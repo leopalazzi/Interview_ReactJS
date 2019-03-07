@@ -1,28 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+//import logo from './logo.svg';
+
+import logo from './Images/Viseo.png';
+
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+import NameForm from './NameForm.js';
+
+import Chapter from './Chapter.js';
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { renderChild: true, renderChapter: false };
+        this.handleChildUnmount = this.handleChildUnmount.bind(this);
+    }
+    handleChildUnmount() {
+        this.setState({ renderChild: false, renderChapter: true });
+    }
+    render() {
+        let name = localStorage.getItem('username');
+        console.log('nom' + name);
+        return (
+            <div>
+                <div className="App">
+                    <header className="NameForm">
+                        <h1 className="Interview"> Interview </h1>
+                        <img src={logo} className="App-logo" alt="logo" />
+                    </header>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div className="Form">
+                    {this.state.renderChapter ? <Chapter msg="1" /> : null}
+                    {this.state.renderChild ? <NameForm unmountMe={this.handleChildUnmount} /> : null}
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
