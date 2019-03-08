@@ -13,7 +13,7 @@ li {
     font-size : 28px;
     margin-left : 0px;
     padding-left :0px;
-    margin: 0 0 10px 0;
+    margin: 0 0 11px 0;
 }
 
 li::before {content: "•  "; color: dimgray}
